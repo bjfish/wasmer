@@ -6,6 +6,7 @@ branches:
   only:
     - staging
     - trying
+    - fix/llvm-windows-appveyor-build-debug
 
 environment:
   matrix:
