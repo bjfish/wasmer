@@ -9,6 +9,7 @@ branches:
     - fix/llvm-windows-appveyor-build-debug
 
 environment:
+  LLVM_SYS_70_PREFIX: C:\projects\deps\llvm-7.0.1-install
   matrix:
     - CHANNEL: stable
       ARCH: x86_64
@@ -30,7 +31,6 @@ install:
   # # - set "PATH=%PATH%;C:\projects\deps\llvm\bin"
   # - set "LLD_LINK=C:\projects\deps\llvm\bin\lld-link.exe"
   - C:\projects\deps\llvm-7.0.1-install\bin\llvm-config.exe --version
-  - set "LLVM_SYS_70_PREFIX=C:\projects\deps\llvm-7.0.1-install"
   - cd "%APPVEYOR_BUILD_FOLDER%"
 
   # Install Rust
@@ -51,6 +51,7 @@ install:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 build_script:
+   - echo LLVM_SYS_70_PREFIX %LLVM_SYS_70_PREFIX%
    - cargo build --release --verbose
 
 test_script:
